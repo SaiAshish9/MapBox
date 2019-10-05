@@ -15,7 +15,7 @@ const volunteerSchema=new mongoose.Schema({
     address: String,
     description: String
   },
-  locations: [
+  location:
     {
       type: {
         type: String,
@@ -24,9 +24,7 @@ const volunteerSchema=new mongoose.Schema({
       },
       coordinates: [Number],
       address: String,
-      description: String,
-      day: Number
-    }]
+      description: String    }
 })
 
 

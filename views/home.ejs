@@ -3,7 +3,12 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-  </head>
+</head>
+<link rel="stylesheet" href="./css/styles.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<script src='https://api.mapbox.com/mapbox-gl-js/v1.3.2/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v1.3.2/mapbox-gl.css' rel='stylesheet' />
   <body class="container-fluid">
     <p>
       Mapbox
@@ -12,8 +17,76 @@
     <p> <%= i.name %></p>
  <% } ) %>
 
+
+
+
+<section >
+
+  <div   id='map' style='width: 450px; height: 450px;'></div>
+
+<!-- <div class=""> -->
+   <!-- <%= locations %> -->
+<!-- </div> -->
+
+<script>
+const locations=Array(<%= locations %>);
+
+
+const coordinates=[];
+for(i=0;i<locations.length;){
+coordinates.push([locations[i],locations[i+1]])
+i=i+2;
+}
+
+console.log(coordinates);
+
+mapboxgl.accessToken = 'pk.eyJ1Ijoic2FpYXNoaXNoIiwiYSI6ImNrMWNjYTE1NDBqbTEzY213amthOG13NTYifQ.CHQ3cTf77gEPuAhUAPhYDg';
+
+
+var map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/mapbox/streets-v11'
+});
+
+const bounds = new mapboxgl.LngLatBounds();
+
+ coordinates.forEach(item => {
+  const el = document.createElement('div');
+  el.className = 'marker';
+
+  new mapboxgl.Marker({
+    element: el,
+    anchor: 'bottom'
+  })
+    .setLngLat(item)
+    .addTo(map);
+
+  new mapboxgl.Popup({
+    offset: 30
+  })
+    .setLngLat(item)
+    .setHTML(`<p>Volunteer</p>`)
+    .addTo(map);
+
+  bounds.extend(item);
+});
+
+map.fitBounds(bounds, {
+  padding: {
+    top: 200,
+    bottom: 150,
+    left: 100,
+    right: 100
+  }
+});
+
+</script>
+</section>
+
+
+
   </body>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="./js/mapbox.js" charset="utf-8"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

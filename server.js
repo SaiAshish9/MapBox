@@ -60,10 +60,10 @@ const item2 = new Volunteer({
 
 const item3={
   "startLocation": {
-    "description": "Banff, CAN",
+    "description": "",
     "type": "Point",
     "coordinates": [-115.570154, 51.178456],
-    "address": "224 Banff Ave, Banff, AB, Canada"
+    "address": ""
   },
 
   "_id": "5c88fa8cf4afda39709c2951",
@@ -72,7 +72,7 @@ const item3={
   "location":
     {
       "_id": "5c88fa8cf4afda39709c2954",
-      "description": "Banff National Park",
+      "description": "",
       "type": "Point",
       "coordinates": [-116.214531, 51.417611],
       "day": 1

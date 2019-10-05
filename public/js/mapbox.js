@@ -11,7 +11,6 @@
 //
 //   var map = new mapboxgl.Map({
 //     container: 'map',
-//     style: 'mapbox://styles/jonasschmedtmann/cjvi9q8jd04mi1cpgmg7ev3dy',
 //     scrollZoom: false
 //     // center: [-118.113491, 34.111745],
 //     // zoom: 10,
